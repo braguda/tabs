@@ -1,0 +1,69 @@
+@font-face{
+    font-family: "Comfort";
+    src: url("/fonts/comfort.ttf");
+}
+
+.bg-gradient {
+    background: linear-gradient(269deg, #1e7690, #2a99b9, #3abbe1, #e1c73a);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimationName 25s ease infinite;
+    -moz-animation: AnimationName 25s ease infinite;
+    animation: AnimationName 25s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+
+body{
+    font-family: Comfort, serif;
+    color: whitesmoke;
+}
+
+a{
+    color: whitesmoke;
+}
+
+.title{
+    color: whitesmoke;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.card-container {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    
+}
+
+.tabby-img {
+    height: 140px;
+    width: 140px;
+    border-radius: 100px;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+
+.user-card {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+}

@@ -1,0 +1,35 @@
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/users/Misha
+
+###
+
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "username": "Brian",
+    "password": "meme"
+}
+
+###
+
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "username": "Misha",
+    "password": "meme"
+}
+
+###
+
+POST http://localhost:3000/users/login 
+content-type: application/json
+
+{
+    "username": "Brian",
+    "password": "meme"
+}

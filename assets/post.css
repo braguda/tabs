@@ -1,0 +1,66 @@
+@font-face{
+    font-family: "Comfort";
+    src: url("/assets/fonts/comfort.ttf");
+}
+
+
+
+body {
+    font-family: Comfort, serif;
+    font-family: Comfort, serif;
+    color: whitesmoke;
+    background-color: #2a99b9;
+}
+
+.post-button{
+    height: 150px;
+    width: 90px;
+    background-color: #e2e61c;
+    color: black;
+    font-family: Comfort, serif;
+}
+
+.delete-button{
+    background-color:#e2e61c;
+    color: black;
+    font-family: Comfort, serif;
+}
+
+a{
+    color: whitesmoke;
+}
+
+.title{
+    color: whitesmoke;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.blog-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.post-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.your-posts{
+    height: 600px;
+    width: 800px;
+    background-color: whitesmoke;
+    border-style: double;
+    border-color: #e2e61c;
+    border-radius: 1%;
+    color: black;
+    overflow: scroll;
+}
+
+.pusheen-gifs{
+    height: 140px;
+    width: 140px;
+    border-radius: 100px;
+}
