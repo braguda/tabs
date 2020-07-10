@@ -33,3 +33,18 @@ content-type: application/json
     "username": "Brian",
     "password": "meme"
 }
+
+###
+
+POST http://localhost:3000/posts
+content-type: application/json
+
+{
+    "username": "Brian",
+    "body": "Hello, tabby. First post",
+    "created_at": "Day 1"
+}
+
+###
+
+GET http://localhost:3000/posts

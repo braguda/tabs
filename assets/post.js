@@ -10,39 +10,42 @@ $(document).ready(() => {
       });
     } else {
           $.get("/posts/" + user, (data) => {
-          if (data.length !== 0) {
-              for (let i = 0; i < data.length; i++) {
-              let row = $("<div>");
-              row.addClass("thought");
-              row.append("<p>" + data[i].body + "</p>");
-              row.append(
-                  "<p>✎ Written on " +
-                  moment(data[i].created_at).format("h:mma on dddd") +
-                  " ✎</p>"
-              );
-              row.append(
-                  "<button class='delete-button' id='deleteBtn'>Delete</button>"
-              );
-              $("#yourPosts").prepend(row);
-              $("#deleteBtn").click(() => {
-              let postId = data[i].id;
+            console.log(data);
+            
+          // if (data.length !== 0) {
+          //     for (let i = 0; i < data.length; i++) {
+          //     let row = $("<div>");
+          //     console.log(data[i].body);
+          //     row.addClass("thought");
+          //     row.append("<p>" + data[i].body + "</p>");
+          //     row.append(
+          //         "<p>✎ Written on " +
+          //         moment(data[i].created_at).format("h:mma on dddd") +
+          //         " ✎</p>"
+          //     );
+          //     row.append(
+          //         "<button class='delete-button' id='deleteBtn'>Delete</button>"
+          //     );
+          //     $("#yourPosts").prepend(row);
+          //     $("#deleteBtn").click(() => {
+          //     let postBody = data[i].body;
   
-              console.log(postId + " clicked for delete.");
-              $.ajax({
-                url: "/posts/" + postId,
-                type: "DELETE",
-                data: postId,
-              })
-                .then((response) => {
-                  console.log(response);
-                })
-                .catch((err) => {
-                  throw err;
-                });
-              location.reload();
-              });
-          }
-          }
+          //     console.log(postBody + " clicked for delete.");
+          //     $.ajax({
+          //       url: "/posts/" + postBody,
+          //       type: "DELETE",
+          //       data: postBody,
+          //     })
+          //       .then((response) => {
+          //         console.log(response);
+          //       })
+          //       .catch((err) => {
+          //         throw err;  
+          //       });
+          //     location.reload();
+          //     });
+          // }
+          // }
           });
   
           $("#postBtn").on("click", (event) => {
@@ -58,9 +61,9 @@ $(document).ready(() => {
               alert("scribble something down first ^-^");
           } else {
               $.post("/posts", newPost).then(() => {
-              location.reload();
               });
               $("#postForm")[0].reset();
+              location.reload();
             }
           });
     }

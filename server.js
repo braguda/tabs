@@ -12,6 +12,7 @@ app.use("/", express.static("assets"));
 //========API DATA========//
 
 const userList = [];
+const posts = [];
 
 //========HTML ROUTES=====//
 
@@ -31,7 +32,6 @@ app.post("/users", async (req, res) => {
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
         console.log(hashedPassword + " with " + req.body.username);
-        res.send(hashedPassword);
         let newUser = {
             username: req.body.username,
             password: hashedPassword
@@ -86,7 +86,34 @@ app.post("/users/login", (req, res) => {
 
 // //Posts// //
 
+app.get("/posts", (req, res) => {
+    return res.json(posts);
+});
 
+///////NOTE YOU LEFT OFF HERE/////
+app.get("/posts/:username", (req, res) => {
+    let username = req.params.username;
+    for (let i = 0; i < posts.length; i ++) {
+        if (username === posts[i].username){
+            console.log(posts[i].username + ": " + posts[i].body);
+            return res.send(posts);
+        }
+    }
+    return res.json(posts);
+});
+
+//TRYING TO ONLY DISPLAY POSTS FROM A SPECIFIC USER//
+//YOU STOPPED BECAUSE YOU CAN ONLY LOG IN ONCE BECAUSE OF THE HASH//
+
+app.post("/posts", (req, res) => {
+    let newPost = {
+        username: req.body.username,
+        body: req.body.body,
+        created_at: req.body.created_at
+    };
+    posts.push(newPost);
+    console.log(posts);  
+});
 
 app.listen(PORT, () => {
     console.log("App is listening on PORT: " + PORT);
