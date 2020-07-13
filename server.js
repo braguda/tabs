@@ -12,7 +12,23 @@ app.use("/", express.static("assets"));
 //========API DATA========//
 
 const userList = [];
-const posts = [];
+const posts = [ 
+    // {
+    //     username: "Brian",
+    //     body: "Hello world",
+    //     created_at: ""
+    // }, 
+    // {
+    //     username: "Misha",
+    //     body: "Bonjour monde",
+    //     created_at: ""
+    // },
+    // {
+    //     username: "Rick",
+    //     body: "Hola Mundo",
+    //     created_at: ""
+    // }
+];
 
 //========HTML ROUTES=====//
 
@@ -31,13 +47,12 @@ app.post("/users", async (req, res) => {
     try{
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
-        console.log(hashedPassword + " with " + req.body.username);
         let newUser = {
             username: req.body.username,
             password: hashedPassword
         }
         userList.push(newUser);
-        console.log(userList);
+        res.send("success");
     } catch {
         res.status(500).send();
     }
@@ -50,10 +65,9 @@ app.get("/users", (req, res) => {
 
 app.get("/users/:username", (req, res) => {
     let username = req.params.username;
-    console.log(username);
     for ( let i = 0; i < userList.length; i ++){
         if (username === userList[i].username){
-            return res.json(userList[i].username);
+            return res.json(userList[i].post);
         }
     }
     return res.json(false);
@@ -72,8 +86,6 @@ app.post("/users/login", (req, res) => {
     }
     try{
         if (bcrypt.compareSync(enteredPassword, user.password)) {
-            console.log(user.password);
-            console.log(enteredUser);
             res.send("success");
         } else {
             res.send("0");
@@ -90,20 +102,15 @@ app.get("/posts", (req, res) => {
     return res.json(posts);
 });
 
-///////NOTE YOU LEFT OFF HERE/////
 app.get("/posts/:username", (req, res) => {
     let username = req.params.username;
     for (let i = 0; i < posts.length; i ++) {
         if (username === posts[i].username){
-            console.log(posts[i].username + ": " + posts[i].body);
             return res.send(posts);
         }
     }
-    return res.json(posts);
+    return res.json(false);
 });
-
-//TRYING TO ONLY DISPLAY POSTS FROM A SPECIFIC USER//
-//YOU STOPPED BECAUSE YOU CAN ONLY LOG IN ONCE BECAUSE OF THE HASH//
 
 app.post("/posts", (req, res) => {
     let newPost = {
@@ -111,9 +118,14 @@ app.post("/posts", (req, res) => {
         body: req.body.body,
         created_at: req.body.created_at
     };
-    posts.push(newPost);
-    console.log(posts);  
+    posts.push(newPost);  
 });
+
+app.delete("/posts/:postIndex", (req, res) => {
+    let toDelete = req.params.postIndex;
+    posts.splice(toDelete, 1);
+    res.send(posts);
+})
 
 app.listen(PORT, () => {
     console.log("App is listening on PORT: " + PORT);

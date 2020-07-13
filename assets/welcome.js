@@ -53,34 +53,19 @@ $(document).ready(() => {
             username: $("#username2").val().trim(),
             password: $("#password2").val().trim()
         }
-        if(newUser.username === "" && newUser.password === "") {
+        if(newUser.username === "" || newUser.password === "") {
             alert("no username and/or password");
         }else {
             $.get("/users/" + newUser.username, (data) => {
-                console.log(data);
                 if(data) {
                     alert("!username taken!")
                 } else{
-                    console.log("username available")
                     $.post("/users", newUser).then(() => {
                         alert("registration successful");
 
                     });
-                    location.reload();
+                        location.reload();
                 }
-
-                // for( let i = 0; i < data.length; i++){
-                //     if(data[i].username.includes(newUser.username)){
-                //         console.log("username taken");
-                //     } else{
-                //         console.log("username available");
-    
-                        // $.post("/users", newUser).then(() => {
-                        //     alert("registration successful");
-                        //     location.reload();
-                        // });
-                //     }
-                // }
 
             }); 
         }
