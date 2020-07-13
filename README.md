@@ -1,1 +1,1 @@
-Two page app using HTML5, CSS, jQuery and Node.js. No database. 
+Simple blog app using HTML5, CSS, jQuery and Node.js. No database. 
